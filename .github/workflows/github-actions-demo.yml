@@ -1,0 +1,32 @@
+# Nombre del workflow que aparece en la interfaz de GitHub Actions
+name: Github Actions demo
+
+# Título personalizado que se muestra en cada ejecución del pipeline
+run-name: ${{ github.actor }} está ejecutando un pipeline
+
+# El workflow se activa cada vez que se hace push al repositorio
+on:
+  push:
+
+jobs:
+  # Job de ejemplo que imprime información del evento y del repositorio
+  Saludar-Hello-World:
+    # El job corre en una máquina virtual con Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Imprimir el tipo de evento que activó el workflow
+      - name: Imprimir nombre del evento
+        run: echo "El evento que activó este workflow fue ${{ github.event_name }}"
+
+      # Paso 2: Imprimir la rama y el nombre del repositorio
+      - name: Imprimir rama y repositorio
+        run: echo "Rama ${{ github.ref }} del repositorio ${{ github.repository }}"
+
+      # Paso 3: Descargar el código del repositorio en el runner
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      # Paso 4: Listar los archivos del directorio de trabajo
+      - name: Listar archivos del workspace
+        run: ls ${{ github.workspace }}
