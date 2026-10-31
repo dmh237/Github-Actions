@@ -30,3 +30,7 @@ jobs:
       # Paso 4: Listar los archivos del directorio de trabajo
       - name: Listar archivos del workspace
         run: ls ${{ github.workspace }}
+
+      # Paso 5: Saludo final de ejemplo
+      - name: Saludar al mundo
+        run: echo "¡Hello World desde GitHub Actions!"
